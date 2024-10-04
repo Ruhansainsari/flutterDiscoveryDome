@@ -11,11 +11,12 @@ class CustomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       selectedItemColor: Colors.purple,
       unselectedItemColor: Colors.grey,
-      backgroundColor: Colors.white,
+      backgroundColor: isDarkMode ? Colors.black12 : Colors.white,
       elevation: 8.0,
       showUnselectedLabels: true,
       currentIndex: currentIndex,

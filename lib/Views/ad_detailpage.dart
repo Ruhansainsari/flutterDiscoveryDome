@@ -48,13 +48,12 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
     }
   }
 
-  // Fetch reviews for the ad
   Future<void> fetchReviews() async {
-    final token = await storage.read(key: 'auth_token'); // Retrieve token from secure storage
+    final token = await storage.read(key: 'auth_token');
     final response = await http.get(
       Uri.parse('http://192.168.1.16:8000/api/ads/${widget.adId}/ratings'),
       headers: {
-        'Authorization': 'Bearer $token', // Add authorization header
+        'Authorization': 'Bearer $token',
       },
     );
 
@@ -73,7 +72,7 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
     final response = await http.post(
       Uri.parse('http://192.168.1.16:8000/api/ads/${widget.adId}/rating'),
       headers: {
-        'Authorization': 'Bearer $token', // Add authorization header
+        'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
       },
       body: json.encode({
@@ -83,10 +82,9 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
     );
 
     if (response.statusCode == 201) {
-      // If successful, reset input fields and fetch reviews again
       _ratingController.clear();
       _reviewController.clear();
-      fetchReviews(); // Refresh reviews
+      fetchReviews();//to refresh
     } else {
       throw Exception('Failed to submit review');
     }
@@ -94,7 +92,7 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
 
 
 
-  // Share the ad details
+  // share the ad details
   void shareAdDetails() {
     if (adDetails != null) {
       final String adTopic = adDetails!['topic'];
@@ -191,41 +189,39 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
               children: [
                 Center(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 32.0), // Adds space from the top and bottom
+                    padding: const EdgeInsets.symmetric(vertical: 32.0),
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.9, // Make container smaller (90% of screen width)
+                      width: MediaQuery.of(context).size.width * 0.9,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey, width: 2), // Border color and thickness
-                        borderRadius: BorderRadius.circular(16), // Rounded corners
-                        color: Colors.white, // Background color
+                        border: Border.all(color: Colors.grey, width: 2),
+                        borderRadius: BorderRadius.circular(16),
+                        color: Colors.transparent,
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black12, // Shadow color
+                            color: Colors.black12,
                             blurRadius: 8,
                             offset: Offset(0, 4),
                           ),
                         ],
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(20.0), // Inner padding
+                        padding: const EdgeInsets.all(20.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               'Submit Your Review',
                               style: TextStyle(
-                                fontSize: 20, // Slightly smaller font size
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).colorScheme.onBackground,
                               ),
                             ),
                             SizedBox(height: 16),
-
-                            // Rating Input
                             Text(
                               'Rating (1-5)',
                               style: TextStyle(
-                                fontSize: 14, // Reduced font size for labels
+                                fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: Theme.of(context).colorScheme.onBackground,
                               ),
@@ -238,13 +234,13 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
                                   child: TextField(
                                     controller: _ratingController,
                                     decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16), // Adjust padding inside TextField
+                                      contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                                       hintText: 'Enter rating',
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
                                       ),
                                       filled: true,
-                                      fillColor: Colors.grey[200],
+                                      fillColor: Colors.transparent,
                                     ),
                                     keyboardType: TextInputType.number,
                                   ),
@@ -253,7 +249,7 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
                                 Icon(
                                   Icons.star,
                                   color: Colors.yellow[700],
-                                  size: 28, // Smaller icon size
+                                  size: 28,
                                 ),
                               ],
                             ),
@@ -263,7 +259,7 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
                             Text(
                               'Review',
                               style: TextStyle(
-                                fontSize: 14, // Reduced font size for labels
+                                fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: Theme.of(context).colorScheme.onBackground,
                               ),
@@ -272,15 +268,15 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
                             TextField(
                               controller: _reviewController,
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(16), // Add more padding inside TextField
+                                contentPadding: EdgeInsets.all(16),
                                 hintText: 'Write your review here',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 filled: true,
-                                fillColor: Colors.grey[200],
+                                fillColor: Colors.transparent,
                               ),
-                              maxLines: 3, // Reduced maxLines to reduce height of the text box
+                              maxLines: 3,
                             ),
                             SizedBox(height: 24),
 
@@ -291,7 +287,7 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
                                 child: Text(
                                   'Submit Review',
                                   style: TextStyle(
-                                    fontSize: 14, // Slightly smaller font size for the button
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   ),
@@ -311,6 +307,8 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
                     ),
                   ),
                 ),
+
+
                 // Displaying ratings and reviews
                 ListView.builder(
                   shrinkWrap: true,
@@ -353,7 +351,6 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
                                 ],
                               ),
                             ),
-                            // Rating displayed in the top-right corner
                             Positioned(
                               top: 8,
                               right: 16,
@@ -378,12 +375,9 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
                     );
                   },
                 ),
-
               ],
             ),
           ),
-
-
         ],
       ),
       bottomNavigationBar: CustomNavBar(currentIndex: 1),

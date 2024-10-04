@@ -60,7 +60,7 @@ class _EditPersonalDataScreenState extends State<EditPersonalDataScreen> {
       );
 
       if (response.statusCode == 200) {
-        Navigator.pop(context); // Go back to the profile page
+        Navigator.pop(context);
       } else {
         final data = json.decode(response.body);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -89,7 +89,7 @@ class _EditPersonalDataScreenState extends State<EditPersonalDataScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView( // Add SingleChildScrollView here
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,10 +109,12 @@ class _EditPersonalDataScreenState extends State<EditPersonalDataScreen> {
                 labelText: 'First Name',
                 prefixIcon: Icon(Icons.person, color: Colors.purple),
                 filled: true,
-                fillColor: Colors.grey[200],
+                fillColor: Colors.transparent,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),
                 ),
                 contentPadding: EdgeInsets.symmetric(vertical: 16.0),
               ),
@@ -124,10 +126,12 @@ class _EditPersonalDataScreenState extends State<EditPersonalDataScreen> {
                 labelText: 'Last Name',
                 prefixIcon: Icon(Icons.person_outline, color: Colors.purple),
                 filled: true,
-                fillColor: Colors.grey[200],
+                fillColor: Colors.transparent,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
+                  borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.onBackground,
+                  ),
                 ),
                 contentPadding: EdgeInsets.symmetric(vertical: 16.0),
               ),
@@ -139,10 +143,12 @@ class _EditPersonalDataScreenState extends State<EditPersonalDataScreen> {
                 labelText: 'City',
                 prefixIcon: Icon(Icons.location_city, color: Colors.purple),
                 filled: true,
-                fillColor: Colors.grey[200],
+                fillColor: Colors.transparent,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),
                 ),
                 contentPadding: EdgeInsets.symmetric(vertical: 16.0),
               ),

@@ -139,10 +139,10 @@ class _SearchPageState extends State<SearchPage> {
               child: TextField(
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.transparent, // Make background transparent to blend with container
+                  fillColor: Colors.transparent,
                   hintText: 'Search by City',
-                  hintStyle: TextStyle(color: Colors.grey[600]), // Hint text style
-                  prefixIcon: Icon(Icons.location_city, color: Colors.grey), // Change icon color to grey
+                  hintStyle: TextStyle(color: Colors.grey[600]),
+                  prefixIcon: Icon(Icons.location_city, color: Colors.grey),
                   suffixIcon: IconButton(
                     icon: Icon(Icons.search, color: Colors.grey),
                     onPressed: searchAds,
@@ -160,11 +160,11 @@ class _SearchPageState extends State<SearchPage> {
             // Ads List
             Expanded(
               child: isLoading
-                  ? Center(child: CircularProgressIndicator()) // Loading Indicator
+                  ? Center(child: CircularProgressIndicator())
                   : GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Two columns
-                  childAspectRatio: 0.7, // Aspect ratio of the cards
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.7,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                 ),
