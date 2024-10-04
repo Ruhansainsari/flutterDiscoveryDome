@@ -14,12 +14,12 @@ class _PendingAdsScreenState extends State<PendingAdsScreen> {
   final FlutterSecureStorage storage = FlutterSecureStorage();
   List<dynamic> ads = [];
   bool isLoading = true;
-  String adStatus = 'pending'; // To keep track of which ads to show
+  String adStatus = 'pending';
 
   @override
   void initState() {
     super.initState();
-    fetchAds(); // Load the pending ads by default
+    fetchAds(); //   pending ads by default
   }
 
   // Fetch ads based on status
@@ -74,7 +74,7 @@ class _PendingAdsScreenState extends State<PendingAdsScreen> {
       ),
       body: Column(
         children: [
-          // Tabs for pending, approved, and rejected ads
+
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Row(
@@ -94,11 +94,11 @@ class _PendingAdsScreenState extends State<PendingAdsScreen> {
               ),
             )
                 : Padding(
-              padding: const EdgeInsets.all(16.0), // Add padding around the GridView
+              padding: const EdgeInsets.all(16.0),
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Display 2 ads per row
-                  childAspectRatio: 0.7, // Adjust the aspect ratio to make it look better
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.7,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                 ),
@@ -113,7 +113,7 @@ class _PendingAdsScreenState extends State<PendingAdsScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Display the image
+
                         ad['image'] != null
                             ? ClipRRect(
                           borderRadius: BorderRadius.only(
@@ -181,7 +181,7 @@ class _PendingAdsScreenState extends State<PendingAdsScreen> {
         setState(() {
           adStatus = label.toLowerCase();
         });
-        fetchAds(); // Fetch ads based on selected status
+        fetchAds(); // ads based on selected status
       },
       child: Text(
         label,

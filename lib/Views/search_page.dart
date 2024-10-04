@@ -14,7 +14,7 @@ class _SearchPageState extends State<SearchPage> {
   List ads = [];
   String searchTopic = '';
   String searchCity = '';
-  bool isLoading = true; // To manage loading state
+  bool isLoading = true;
 
   // Fetch approved ads from the backend
   Future<void> fetchApprovedAds() async {
@@ -23,17 +23,17 @@ class _SearchPageState extends State<SearchPage> {
     if (response.statusCode == 200) {
       setState(() {
         ads = json.decode(response.body);
-        isLoading = false; // Set loading to false after fetching
+        isLoading = false;
       });
     } else {
       throw Exception('Failed to load ads');
     }
   }
 
-  // Search ads by topic and city
+  // search by topic and city
   Future<void> searchAds() async {
     setState(() {
-      isLoading = true; // Set loading to true when starting search
+      isLoading = true;
     });
 
     final response = await http.get(
@@ -43,7 +43,7 @@ class _SearchPageState extends State<SearchPage> {
     if (response.statusCode == 200) {
       setState(() {
         ads = json.decode(response.body);
-        isLoading = false; // Set loading to false after searching
+        isLoading = false;
       });
     } else {
       throw Exception('Failed to load search results');
@@ -53,7 +53,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
-    fetchApprovedAds(); // Load all approved ads on page load
+    fetchApprovedAds();
   }
 
   @override
@@ -147,7 +147,7 @@ class _SearchPageState extends State<SearchPage> {
                     icon: Icon(Icons.search, color: Colors.grey),
                     onPressed: searchAds,
                   ),
-                  border: InputBorder.none, // No border
+                  border: InputBorder.none,
                   contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 15), // Adjusted padding
                 ),
                 onChanged: (value) {
@@ -180,7 +180,6 @@ class _SearchPageState extends State<SearchPage> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(15),
                       onTap: () {
-                        // Navigate to AdDetailPage on tap
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -193,7 +192,7 @@ class _SearchPageState extends State<SearchPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Image Display
+
                             ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: ad['image'] != null

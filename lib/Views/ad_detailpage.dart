@@ -28,11 +28,11 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
   void initState() {
     super.initState();
     fetchAdDetails();
-    fetchReviews(); // Fetch reviews on init
+    fetchReviews();
     _tabController = TabController(length: 2, vsync: this);
   }
 
-  // Fetch ad details from the backend
+  //  ad details
   Future<void> fetchAdDetails() async {
     final response = await http.get(
       Uri.parse('http://192.168.1.16:8000/api/ads/${widget.adId}'),
@@ -66,7 +66,7 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
     }
   }
 
-  // Function to submit a new rating and review
+  // submit a new rating and review
   Future<void> submitReview() async {
     final token = await storage.read(key: 'auth_token');
     final response = await http.post(
@@ -294,7 +294,7 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
                                 ),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.purple,
-                                  padding: EdgeInsets.symmetric(horizontal: 28, vertical: 12), // Smaller padding for button
+                                  padding: EdgeInsets.symmetric(horizontal: 28, vertical: 12),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
                                   ),
@@ -384,7 +384,7 @@ class _AdDetailPageState extends State<AdDetailPage> with SingleTickerProviderSt
     );
   }
 
-  // Helper method for detail card
+  //  method for detail card
   Widget _buildDetailCard({required IconData icon, required String label, required String value, bool isContactCard = false}) {
     return Card(
       shape: RoundedRectangleBorder(

@@ -124,7 +124,7 @@ class _CreateAdPageState extends State<CreateAdPage> {
       dio.options.headers['Authorization'] = 'Bearer $token';
 
       dio.options.validateStatus = (status) {
-        return status! < 500; // Allow redirections and client errors (302, 400, etc.)
+        return status! < 500;
       };
 
       final response = await dio.post('http://192.168.1.16:8000/api/ads', data: formData);

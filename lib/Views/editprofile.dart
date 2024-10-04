@@ -167,8 +167,8 @@ class _EditPersonalDataScreenState extends State<EditPersonalDataScreen> {
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
                 style: ElevatedButton.styleFrom(
-                  elevation: 0, // Remove default elevation
-                  backgroundColor: Colors.purple, // Make background transparent
+                  elevation: 0,
+                  backgroundColor: Colors.purple,
                 ),
               ),
             ),
