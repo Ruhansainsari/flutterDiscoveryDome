@@ -354,7 +354,7 @@ class _CreateAdPageState extends State<CreateAdPage> {
           ),
         ),
       ),
-      bottomNavigationBar: CustomNavBar(currentIndex: 1),
+      bottomNavigationBar: CustomNavBar(currentIndex: 2),
     );
   }
 }
